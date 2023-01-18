@@ -20,7 +20,7 @@ public class ArmorAdjustment {
 	public ArmorAdjustment() {
 		ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 		builder.push("general");
-		ToughnessDividor = builder.defineInRange("toughness_dividor", 12D, 1D, Double.MAX_VALUE);
+		ToughnessDividor = builder.defineInRange("toughness_dividor", 12D, 0.01D, Double.MAX_VALUE);
 		builder.pop();
 		CONFIG = builder.build();
 		ModLoadingContext.get().registerConfig(Type.COMMON, CONFIG, "ArmorAdjustment.toml");
