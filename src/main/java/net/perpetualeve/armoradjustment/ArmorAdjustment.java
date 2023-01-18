@@ -5,8 +5,8 @@ import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.config.ModConfig.Type;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(ArmorAdjustment.MODID)
@@ -30,12 +30,12 @@ public class ArmorAdjustment {
 		bus.addListener(this::onFileChange);
 	}
 	
-	public void onLoad(ModConfigEvent.Loading configEvent) 
+	public void onLoad(ModConfig.Loading configEvent) 
     {
     	toughness = ToughnessDividor.get().floatValue();
     }
 
-    public void onFileChange(ModConfigEvent.Reloading configEvent) 
+    public void onFileChange(ModConfig.Reloading configEvent) 
     {
     	toughness = ToughnessDividor.get().floatValue();
     }
