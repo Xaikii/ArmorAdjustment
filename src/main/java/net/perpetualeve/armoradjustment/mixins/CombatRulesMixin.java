@@ -13,7 +13,8 @@ public class CombatRulesMixin {
 	@Redirect(method = "getDamageAfterAbsorb", at = @At("Invoke"))
 	private static float getDamageAfterAbsorbRed(float u1, float u2, float u3, float damage, float armor, float toughness) {
 		double sqrt = Math.sqrt(damage);
-		double div = sqrt+Math.sqrt(armor*((toughness/ArmorAdjustment.toughness)*sqrt));
+		double div = sqrt+Math.sqrt(armor+((toughness/ArmorAdjustment.toughness)*sqrt));
+		System.out.println(damage + " : " + armor  + " : " + toughness + " : " + (damage*(sqrt/div)));
 		return (float) (damage*(sqrt/div));
 	}
 }
