@@ -2,10 +2,12 @@ package net.perpetualeve.armoradjustment;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(ArmorAdjustment.MODID)
 public class ArmorAdjustment {
@@ -22,6 +24,10 @@ public class ArmorAdjustment {
 		builder.pop();
 		CONFIG = builder.build();
 		ModLoadingContext.get().registerConfig(Type.COMMON, CONFIG, "ArmorAdjustment.toml");
+		
+		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		bus.addListener(this::onLoad);
+		bus.addListener(this::onFileChange);
 	}
 	
 	public void onLoad(ModConfigEvent.Loading configEvent) 
