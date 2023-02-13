@@ -14,8 +14,6 @@ public class CombatRulesMixin {
 
 	@Inject(method = "getDamageAfterAbsorb", at = @At("Invoke"), cancellable = true, locals = LocalCapture.CAPTURE_FAILEXCEPTION)
 	private static void getDamageAfterAbsorbRed(float damage, float armor, float toughness, CallbackInfoReturnable<Float> ci) {
-		double sqrt = Math.sqrt(damage);
-		double div = (sqrt+Math.sqrt(armor+((toughness/ArmorAdjustment.toughness)*sqrt)));
-		ci.setReturnValue((float) (damage*(sqrt/div)));
+		ci.setReturnValue((float) (damage * Math.pow(ArmorAdjustment.armor_base, armor/ArmorAdjustment.armor_div) * Math.pow(ArmorAdjustment.toughness_base, Math.sqrt(damage*(toughness/ArmorAdjustment.toughness_div)))));
 	}
 }
